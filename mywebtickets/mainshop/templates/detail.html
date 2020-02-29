@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block content %}
+    <style>
+        .shadow-evimg{
+            padding:0;
+            box-shadow: 10px 10px 5px grey;
+        }
+</style>
+    <div class='container mt-5 ml-5 shadow-evimg'>
+    <div class='card'>
+        <div class='row'>
+            <div class='col-4 ml-5 mt-5 mb-4'>
+                 <img class="shadow-evimg" src="{{ eventinfo.picture.url }}" style="width:18rem;height:18rem" alt="Card image cap">
+            </div>
+            <div class='col-6 mt-4 mb-4'>
+                 <h6>{{eventinfo.category_id.category_name}} </h6>
+                 <h1>{{eventinfo.event_name}} </h1>
+                 <h5>{{eventinfo.even_date}}</h5><br>
+                 <h5>{{eventinfo.location}} </h5>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class='container'>
+        <h1 class='mt-5 ml-5'>About this event</h1>
+        <div class='container ml-5'>
+            <h6 class='ml-4'>{{eventinfo.description}}</h6><br>
+        </div>
+    </div>
+    <br>
+    <div class='container'>
+        <h1 class=' ml-5' >Ticket</h1>
+        <div class='container row'>
+        <form method="POST" action="#">
+            <div class='card col-12 p-5'>
+                    <p>Normal Ticket</p>
+                    <div class='row'>
+                    <div class='col4'>
+                    <p>Price : {{eventinfo.ticket_price}}</p>
+                    </div>
+                    <div class='col-6'>
+                      <div class="form-group">
+                        <select class="form-control" id="exampleFormControlSelect1">
+                            <option value='1'>1</option>
+                           <option value='2'>2</option>
+                           <option value='3'>3</option>
+                           <option value='4'>4</option>
+                           <option value='5'>5</option>
+                           <option value='6'>6</option>
+                           <option value='7'>7</option>
+                           <option value='8'>8</option>
+                           <option value='9'>9</option>
+                           <option value='10'>10</option>
+                        </select>
+                        </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary ml-3">Submit</button>
+                    </div>
+            </div>
+            
+            </div>
+            
+            </form>
+        </div>
+    </div>
+{% endblock %}

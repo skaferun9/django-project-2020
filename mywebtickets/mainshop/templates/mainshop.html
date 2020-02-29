@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    a:hover{
+        text-decoration:none;
+        color:red;
+    }
+</style>
+    <div class='container'>
+    
+    <h1>POPULAR NOW</h1>
+    
+    <div class='row'>
+    {% if popevent %}
+        {% for pl in popevent %}
+        <div class='col-4'>
+        
+        <div class="card " style="width: 18rem;">
+        <a href="{% url 'my_detail' event_id=pl.id %}">
+            <img class="card-img-top" src="{{ pl.picture.url }}" style="width:18rem;height:18rem" alt="Card image cap">
+                <div class="card-body ">
+                    <h5 class="card-title">{{ pl.event_name }}</h5>
+                    <p class="card-text">{{ pl.even_date }} at {{pl.event_time}}</p>
+                    <p class="card-text">{{ pl.location }}</p>
+                    </a><br>
+                  <a href="#"><p class="card-text">{{ pl.category_id.category_name }}</p></a>
+                </div>
+                
+        </div>
+        
+        </div>
+        
+        {% endfor %}
+    {% endif %}
+        </div>
+    </div>
+    <br><br>
+    <div class='container'>
+    <h1>Category</h1>
+    <div class='row'>
+        {% for mc in main_category %}
+            <div class='col-2'>
+            <a href='#'>
+                <div class='card' style="width: 18rem;">
+                    <div class="card-body ">
+                        <h5 class="card-title">{{ mc.category_name }}</h5>
+                    </div>
+                </div>
+                 </a>
+            </div>
+           
+        {% endfor%}
+    
+        
+    </div>
+    </div>
+{% endblock %}
