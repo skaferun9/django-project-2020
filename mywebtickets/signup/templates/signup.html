@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+    <style>
+</style>
+<center><div class='container mt-5'>
+        <h3>Create your account</h3>
+      <form method="POST" action="{% url 'signup' %}">
+      {% csrf_token %}
+            <div class="form-group">
+              <label>Email address</label>
+              <input type="email" class="form-control" name="signupemail" aria-describedby="emailHelp" placeholder="Enter email">
+            </div>
+            <div class='row'>
+              <div class="form-group col-6">
+                <label >First name</label>
+                <input type="text" class="form-control" name="signupfirstname" placeholder="Enter first name">
+              </div>
+
+              <div class="form-group col-6">
+                <label>Last name</label>
+                <input type="text" class="form-control" name="signuplastname" placeholder="Enter last name">
+                </div>
+            </div>
+          <div class="form-group">
+              <label>Username</label>
+              <input type="Username" class="form-control" name="signupusername" placeholder="Username">
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" class="form-control" name="signuppassword" placeholder="Password" >
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+    </div></center>
+{% endblock %}

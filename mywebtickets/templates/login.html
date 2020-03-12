@@ -9,7 +9,7 @@
                 <p class='text-danger'>{{error}}</p>
             {% endif %}
             {% if request.GET.next %}
-                <input type='hidden' name='next_url' value={{request.GET.next}}>
+                <input type='hidden' name='next_url' value='{{request.GET.next}}'>
             {% endif %}
             <div class="form-group">
                 <label for="username">Username:</label>

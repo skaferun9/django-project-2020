@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+    <style>
+</style>
+<h1>Search</h1>
+    <div class='row'>
+    {% for tt in search_ob %}
+        <div class='col-4'>
+        <div class="card " style="width: 18rem;">
+        <a href="{% url 'my_detail' event_id=tt.id %}">
+            <img class="card-img-top" src="{{ tt.picture.url }}" style="width:18rem;height:18rem" alt="Card image cap">
+                <div class="card-body ">
+                    <h5 class="card-title">{{ tt.event_name }}</h5>
+                    <p class="card-text">{{ tt.even_date }} at {{tt.event_time}}</p>
+                    <p class="card-text">{{ tt.location }}</p>
+                    </a><br>
+                    
+                  <p class="card-text">{{ tt.category_id.category_name }}</p>
+
+                  
+                </div>
+        </div>
+        </div>
+        
+        {%endfor%}
+        </div>
+    
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    
+</style>
+<div class='container'>
+    <h1>All Event</h1>
+    <div class='row'>
+    {% for qq in all_event %}
+        <div class='col-4'>
+        <div class="card " style="width: 18rem;">
+        <a href="{% url 'my_detail' event_id=qq.id %}">
+            <img class="card-img-top" src="{{ qq.picture.url }}" style="width:18rem;height:18rem" alt="Card image cap">
+                <div class="card-body ">
+                    <h5 class="card-title">{{ qq.event_name }}</h5>
+                    <p class="card-text">{{ qq.even_date }} at {{qq.event_time}}</p>
+                    <p class="card-text">{{ qq.location }}</p>
+                    </a><br>
+                  <a href="{% url 'allbycat' category_id=qq.category_id.id %}"><p class="card-text">{{ qq.category_id.category_name }}</p></a>
+                </div>
+                
+        </div>
+        
+        </div>
+        
+        {%endfor%}
+        </div>
+    </div>
+    
+{% endblock %}

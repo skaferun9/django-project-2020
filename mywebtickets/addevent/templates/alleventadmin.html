@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+    <style>
+</style>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <script>
+        alert("มีคนซื้อบัตรไปแล้ว ไม่สามารถลบ Event นี้ได้");
+    </script>
+    {% endfor %}
+</ul>
+{% endif %}
+    {% for alle in all_event %}
+    <form method="POST" action='{% url "delevent" %}'>
+    {% csrf_token %}
+    <div class='container mt-5 ml-5 shadow-evimg'>
+    <div class='card'>
+        <div class='row'>
+            <div class='col-4 ml-5 mt-5 mb-4'>
+                 <img class="shadow-evimg" src="{{ alle.picture.url }}" style="width:18rem;height:18rem" alt="Card image cap">
+            </div>
+            <div class='col-6 mt-4 mb-4'>
+                 <h6>{{alle.category_id.category_name}} </h6>
+                 <h1>{{alle.event_name}} </h1>
+                 <h5>วันที่จัดงาน : {{alle.even_date}}</h5>
+                 <h5>งานเริ่ม : {{alle.event_time}}</h5>
+                 <h5>ราคา : {{alle.ticket_price}}</h5>
+                 <h5>จำนวนทีบัตรทั้งหมด : {{alle.ticket_amount}}</h5>
+                 <h5>จำนวนบัตรที่ขายไปแล้ว : {{alle.ticket_sold}}</h5>
+                 <h5>สถานที่จัดงาน : {{alle.location}} </h5>
+                 <button type="submit" class="btn btn-danger" value='{{alle.id}}' name="del">ลบ</button>
+            </div>
+        </div>
+    </div>
+    </div>
+    </form>
+    {% endfor %}
+
+ 
+            
+{% endblock %}

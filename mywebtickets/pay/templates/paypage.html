@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+    <style>
+        .bgg{
+            background-color: #bfd2d9;
+        }
+        .inn{
+            display: inline;
+        
+        }
+        .rr{
+            text-align: right;
+        }
+        .ll{
+            text-align: left;
+        }
+</style>
+    <h1>pay page</h1>
+    <div class='container'>
+        <div class='row'>
+            <div class='col-6'>
+            <form method='POST' action='{% url "my_pay" pay_event.id %}'>
+            {% csrf_token %}
+            <label>Email address :</label>
+                <input name='email' class="form-control" type='email' value='{{ userr.email }}'>
+                <label>Firstname :</label>
+                    <input name='firstname' class="form-control" type='text' value='{{ userr.first_name }}'>
+                <label>Lastname :</label>
+                    <input name='lastname' class="form-control" type='text' value='{{ userr.last_name }}'>
+                {% if not user.is_authenticated %}
+                <label>Username :</label>
+                    <input type='text' name='username' class="form-control" value='{{ userr.username }}'>
+                <label>Password :</label>
+                    <input type='password' name='password' class="form-control" value='{{ userr.password }}'>
+
+                {% endif %}
+                <input name='ticket' type='hidden' value='{{ ticket }}'><br>
+            <div class='row'>
+                <div class='col'>
+                <button type='submit' class="" style='width:8em;height:7em'>
+                 
+                      
+                            <center><img src={% static 'credit.png' %} style="width:60px"></center>
+                       
+                
+                </button>
+                </div>
+                <div class='col'>
+                <button type='submit' class="" style='width:8em;height:7em'> 
+                            <center><img src={% static 'paypal.png'%} style="width:60px"></center>
+                </button>
+                </div>
+
+                <div class='col'>
+                <button type='submit' class="" style='width:8em;height:7em'>
+             
+                     
+                            <center><img src="{% static 'prom.png' %}" style="width:60px"></center>
+                            
+                     
+    
+                </button>
+                </div>
+            </div>
+            </form>
+            </div>
+            <div class='col-4 ml-5'>
+                <div class='container border border-secondary'>
+                <div class='container'>
+                        <center><p class='bgg p-2 mt-4'>Order summary - {{pay_event.id}}</p></center>
+                        <div class='row'>
+                            <div class='col ml-2'>
+                            <p>date</p>
+                            </div>
+                            <div class='col'>
+                            <p> {{date}}</p>
+                            </div>
+                        </div>
+
+                        <hr class='mt-0'>
+                        <p><b>Items</b></p>
+                        <div class='row'>
+                            <div class='col ml-2'>
+                            <p>Normal Ticket</p>
+                            </div>
+                            <div class='col'>
+                            <p>{{ticket}} tickets</p>
+                            </div>
+                        </div>
+                        <p><b>Total</b></p>
+                         <div class='row'>
+                            <div class='col ml-2'>
+                            <p>{{pay_event.ticket_price}} X {{ticket}}</p>
+                            </div>
+                            <div class='col'>
+                            <p>{{total}} Bath</p>
+                            </div>
+                        </div>
+                </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

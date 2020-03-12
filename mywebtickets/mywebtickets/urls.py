@@ -25,7 +25,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', include('login.urls')),
     path('', include('mainshop.urls')),
-    path('pay/', include('pay.urls'),name='pay')
+    path('pay/', include('pay.urls')),
+    path('logout/', include('logout.urls')),
+    path('signup/', include('signup.urls')),
+    path('add_event/', include('addevent.urls'))
     
     
 ]

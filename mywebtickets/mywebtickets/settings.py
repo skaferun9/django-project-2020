@@ -39,7 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mainshop',
     'login',
-    'pay'
+    'pay',
+    'logout',
+    'signup',
+    'addevent'
 ]
 
 MIDDLEWARE = [

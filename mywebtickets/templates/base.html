@@ -6,10 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>MY Ticket Webpro</title>
+    <link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css'%}">
 
     <style>
-
+  body{
+    font-family: 'Kanit', sans-serif;
+  }
     header[role="banner"] {
             #logo-main {
                 display: block;
@@ -52,31 +55,66 @@
         line-height: 60px; /* Vertically center the text there */
         background-color: #f5f5f5;
         }
+        
     </style>
 
 </head>
 <body>
-<div class="container">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="{% url 'mainshop' %}">LOGO</a>
+<div class="container ">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" >
+<a class="navbar-brand" href="{% url 'mainshop' %}">
+  <img src="{% static 'logo.jpg'%}" style="" class='logo' width="120" height="70"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      
+
+      {% if user.is_authenticated %}
+      {% else %}
       <li class="nav-item active">
-        <a class="nav-link" href="{% url 'login' %}">login <span class="sr-only">(current)</span></a>
+        <a class="nav-link h4" href="{% url 'login' %}">Login</a>
       </li>
+      {% endif %}
+
+       {% if user.is_authenticated %}
+       <li class="nav-item ">
+        <a class="nav-link h4" href="{% url 'hisevent' %}">ประวัติ</a>
+      </li>
+      {% else %}
+      
+      {% endif %}
+
+      {% if user.is_authenticated %}
+      {% else %}
       <li class="nav-item ">
-        <a class="nav-link" href="#">singin</a>
+        <a class="nav-link h4" href="{% url 'signup' %}">Sign up</a>
       </li>
+      {% endif %}
+      
+      {% if user.is_authenticated %}
       <li class="nav-item ">
-        <a class="nav-link disabled" href="#">singout</a>
+        <a class="nav-link h4" href="{% url 'logout' %}">Logout</a>
       </li>
+      {% endif %}
+
+{% if perms.mainshop.add_event %}
+      <li class="nav-item ">
+        <a class="nav-link h4" href="{% url 'add_event' %}">New Event</a>
+      </li>
+{% endif %}
+{% if perms.mainshop.add_event %}
+      <li class="nav-item ">
+        <a class="nav-link h4 " href="{% url 'alleventadmin' %}">จัดการ Event</a>
+      </li>
+{% endif %}
+
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search">
+    <form class="form-inline my-2 my-lg-0" method="POST" action="{% url 'search' %}">
+    {% csrf_token %}
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" name='searchname'>
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
   </div>

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+    <style>
+</style>
+<h1>History</h1>
+{% for tt in histic%}
+    <div class='container mt-5 ml-5 shadow-evimg'>
+    <div class='card'>
+        <div class='row'>
+            <div class='col-4 ml-5 mt-5 mb-4'>
+                 <img class="shadow-evimg" src="{{ tt.event_id.picture.url }}" style="width:18rem;height:18rem" alt="Card image cap">
+            </div>
+            <div class='col-6 mt-4 mb-4'>
+            <h4>Ticket No. {{tt.id}}</h4>
+                <h2>{{tt.event_id.event_name}}</h2>
+                <p class="card-text">{{ tt.event_id.even_date }} at {{tt.event_id.event_time}}</p>
+                 <h2>{{tt.event_id.ticket_price}} Bath</h2>
+                 <p>{{tt.event_id.location}}</p>
+                 <p>{{tt.event_id.description}}</p>
+                <a href="{% url 'allbycat' category_id=tt.event_id.category_id.id %}"><p class="card-text">{{ tt.event_id.category_id.category_name }}</p></a>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endfor %}
+    
+{% endblock %}
